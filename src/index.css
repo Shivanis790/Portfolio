@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-sans: "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  --color-background: oklch(0.985 0.002 286);
+  --color-foreground: oklch(0.18 0.02 286);
+  --color-card: oklch(1 0 0);
+  --color-surface: oklch(0.965 0.008 286);
+  --color-muted: oklch(0.94 0.01 286);
+  --color-muted-foreground: oklch(0.48 0.02 286);
+  --color-border: oklch(0.91 0.012 286);
+  --color-input: oklch(0.91 0.012 286);
+  --color-primary: oklch(0.52 0.22 275);
+  --color-primary-foreground: oklch(0.99 0 0);
+  --color-indigo: oklch(0.52 0.22 275);
+  --color-violet: oklch(0.58 0.24 295);
+  --color-navy: oklch(0.25 0.05 270);
+  --color-ring: oklch(0.52 0.22 275);
+}
+
+.dark {
+  --color-background: oklch(0.14 0.02 286);
+  --color-foreground: oklch(0.96 0.005 286);
+  --color-card: oklch(0.18 0.025 286);
+  --color-surface: oklch(0.16 0.022 286);
+  --color-muted: oklch(0.24 0.025 286);
+  --color-muted-foreground: oklch(0.65 0.02 286);
+  --color-border: oklch(0.28 0.025 286);
+  --color-input: oklch(0.28 0.025 286);
+  --color-primary: oklch(0.62 0.2 275);
+  --color-primary-foreground: oklch(0.99 0 0);
+  --color-indigo: oklch(0.68 0.18 275);
+  --color-violet: oklch(0.72 0.18 295);
+  --color-navy: oklch(0.12 0.03 270);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-indigo), var(--color-violet));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glass {
+  @apply border border-border/60 bg-card/70 backdrop-blur-md;
+}
+
+.card-lift {
+  @apply transition duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-indigo/10;
+}
+
+.grid-fade {
+  background-image:
+    linear-gradient(to right, oklch(0.52 0.22 275 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.52 0.22 275 / 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 70%);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease forwards;
+}
